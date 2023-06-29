@@ -1,0 +1,35 @@
+{% load static %}
+{% load django_bootstrap5 %}
+
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{% static 'app_css/style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="shortcut icon" href="{% static 'pj_image/armx8-1ibhc-001.ico' %}" type="image/vnd.microsoft.icon">
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {% block header %}{% endblock %}
+</head>
+
+<body>
+  <div class="container-fluid"> 
+  {% if err != "none" %}
+    <div>### API Error ###</div>
+    <div>{{ err }}</div>
+  {% else %}
+    <div class="container-fluid"> 
+      {% block content %}{% endblock %}        
+    </div>
+    <div class="container-fluid"> 
+      <ul class="fixed-bottom nav justify-content-end bg-black text-white">
+        <li class="nav-item">
+          <a class="navbar-brand">{{ count }} items found</a>
+        </li>
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>

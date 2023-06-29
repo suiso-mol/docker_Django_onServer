@@ -1,0 +1,51 @@
+{% load static %}
+{% load django_bootstrap5 %}
+
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{% static 'app_css/style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="shortcut icon" href="{% static 'pj_image/armx8-1ibhc-001.ico' %}" type="image/vnd.microsoft.icon">
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+<!--
+  <script src="{% static 'chat/js/chat.js' %}"></script>
+-->
+</head>
+<body>
+   <div class="container-fluid"> 
+      <h1 style="margin:20px">Register</h1>
+   </div>
+   <div class="container-fluid"> 
+      <form enctype="multipart/form-data" method="post">
+        <div class="mb-3 row inline">
+            <label for="{{account_form.email.name}}" class="col-sm-2 col-form-label">{{account_form.email.label}}:</label>
+            {% if account_form.email.data %}
+            <input type="text" class="form-control w-50" name="{{account_form.email.name}}" id="{{account_form.email.name}}" value="{{account_form.email.data}}"></input>
+            {% else %}
+            <input type="text" class="form-control w-50" name="{{account_form.email.name}}" id="{{account_form.email.name}}"></input>
+            {% endif %}
+        </div>
+        <div class="mb-3 row inline">
+            <label for="{{account_form.username.name}}" class="col-sm-2 col-form-label">{{account_form.username.label}}:</label>
+            {% if account_form.username.data %}
+            <input type="text" class="form-control w-50" name="{{account_form.username.name}}" id="{{account_form.username.name}}"  value="{{account_form.username.data}}"></input>
+            {% else %}
+            <input type="text" class="form-control w-50" name="{{account_form.username.name}}" id="{{account_form.username.name}}"></input>
+            {% endif %}
+        </div>
+        <div class="mb-3 row inline">
+            <label for="{{account_form.password.name}}" class="col-sm-2 col-form-label">{{account_form.password.label}}:</label>
+            <input type="password" class="form-control w-50" name="{{account_form.password.name}}" id="{{account_form.password.name}}"></input>
+        </div>
+        <button class="btn btn-secondary btn-lg" type="submit">Register</button>
+        {% for error in account_form.non_field_errors %}
+        <div class="alert alert-danger m-4">{{ error }}</div>
+        {% endfor %}
+        {% csrf_token %}
+      </form>
+   </div>
+</body>
+</html>

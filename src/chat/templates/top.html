@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <title>chat:top</title>
+{% endblock %}
+
+{% block content %}
+    <ul class="nav flex-column m-0 p-3 bg-dark">
+      <li class="nav-item">
+        <a class="nav-link text-dark">.</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light">新しいChatを始める</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light">(仮)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light">文章を要約する</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light">過去のChat履歴を参照する</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light">Logout</a>
+      </li>
+    </ul> 
+  {% endblock %}

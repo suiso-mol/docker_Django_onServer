@@ -1,0 +1,51 @@
+{% load static %}
+{% load django_bootstrap5 %}
+
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{% static 'app_css/style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="shortcut icon" href="{% static 'pj_image/armx8-1ibhc-001.ico' %}" type="image/vnd.microsoft.icon">
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {% block header %}{% endblock %}
+<!--
+  <script src="{% static 'chat/js/chat.js' %}"></script>
+-->
+</head>
+<body class="bg-dark">
+  <div class="d-flex flex-row w-100">
+    <nav class="bg-dark">
+        <ul class="sticky-top nav flex-column m-0 p-3">
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'chat:top' %}">Top</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'chat:chat' %}" target="_blank">NewChat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#">-</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'chat:summarize' %}">Summarize</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'chat:history' %}">History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="{% url 'chat:logout' %}">Logout</a>
+          </li>
+        </ul>
+    </nav>
+    <main class="w-100">
+      <div class="d-flex flex-row">
+        <div class="container-fluid"> 
+          {% block content %}{% endblock %}
+        </div>  
+      </div>
+    </main>
+  </div>
+</body>
+</html>

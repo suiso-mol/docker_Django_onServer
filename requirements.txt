@@ -1,0 +1,9 @@
+Django>=3.0,<4.0
+django-bootstrap5
+uwsgi
+psycopg2
+django-debug-toolbar
+requests
+feedparser
+pandas
+openai

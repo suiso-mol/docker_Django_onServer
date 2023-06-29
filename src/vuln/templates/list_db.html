@@ -1,0 +1,77 @@
+{% extends 'db_base.html' %}
+
+{% block header %}
+  <title>Pkg-Search</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid"> 
+  <h1>Package-Search</h1>
+</div>
+<div class="container-fluid"> 
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group form-inline">
+      <div class="mb-3 inline">
+        <label for="{{search_form.item.name}}" class="col-form-label" style="text-align: right">{{search_form.item.label}}:</label>
+        {% if search_form.item.data %}
+        <input type="" class="form-control w-50" name="{{search_form.item.name}}" id="{{search_form.item.name}}" value="{{search_form.item.data}}">
+        {% else %}
+        <input type="" class="form-control w-50" name="{{search_form.item.name}}" id="{{search_form.item.name}}">
+        {% endif %}
+        <input type="submit" class="btn btn-secondary" value="Search">
+      </div>
+      <h1>{{context}}</h1>
+    </div>
+  </form>
+
+  <table class="table table-hover">
+    <thead class="sticky-top table-dark">
+      <tr>
+        <th class="w10">サーバ</th>
+        <th class="w10">IP</th>
+        <th class="w15">OS</th>
+        <th class="w15">用途</th>
+        <th class="w15">備考</th>
+        <th class="w20">パッケージ名</th>
+        <th class="w15">version</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for db in db_list %}
+      {% if db.deleted == False %}
+      <tr>
+        <td class="w10">{{ db.sv_id.name | linebreaksbr }}</td>
+        <td class="w10">{{ db.sv_id.ip | linebreaksbr }}</td>
+        <td class="w15">{{ db.sv_id.os | linebreaksbr }}</td>
+        <td class="w15">{{ db.sv_id.usage | linebreaksbr }}</td>
+        <td class="w15">{{ db.sv_id.remark | linebreaksbr }}</td>
+        <td class="w20">{{ db.pkg_name_id | linebreaksbr }}</td>
+        <td class="w15">{{ db.version | linebreaksbr }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+    {% for db in db_list %}
+      {% if db.deleted == True %}
+      <tr>
+        <td class="w10" style="text-decoration: line-through;">{{ db.sv_id.name | linebreaksbr }}</td>
+        <td class="w10">{{ db.sv_id.ip | linebreaksbr }}</td>
+        <td class="w15">{{ db.sv_id.os | linebreaksbr }}</td>
+        <td class="w15">{{ db.sv_id.usage | linebreaksbr }}</td>
+        <td class="w15">{{ db.sv_id.remark | linebreaksbr }}</td>
+        <td class="w20">{{ db.pkg_name_id | linebreaksbr }}</td>
+        <td class="w15">{{ db.version | linebreaksbr }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="container-fluid"> 
+    <ul class="fixed-bottom nav justify-content-end bg-black text-white">
+      <li class="nav-item">
+        <a class="navbar-brand">{{ db_list|length }} items found</a>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

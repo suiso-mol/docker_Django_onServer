@@ -1,0 +1,16 @@
+{% load static %}
+{% load django_bootstrap5 %}
+
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'app_css/style.css' %}">
+  <link rel="shortcut icon" href="{% static 'pj_image/armx8-1ibhc-001.ico' %}" type="image/vnd.microsoft.icon">
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+<h1>{{ content_list }}</h1>
+<div>====================</div>
+</body>
+</html>

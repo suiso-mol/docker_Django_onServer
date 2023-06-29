@@ -1,0 +1,73 @@
+{% extends 'db_base.html' %}
+
+{% block header %}
+  <title>search</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid"> 
+  <h1>Free Search</h1>
+</div>
+<div class="container-fluid"> 
+  <form action="" method="POST" target="_blank" enctype="multipart/form-data">
+    <div class="mb-3 inline">
+      {{ form.target.label_tag }}
+      <p style="display:inline-block; width:30px;"></p>
+      {% for choice in form.target %}
+        <a class="form-check-input">{{ choice.tag }}</a>
+        <label class="form-check-label">{{ choice.choice_label }}</label>
+      {% endfor %}
+      </p>
+      {% if form.target.error %}
+      <p class="help">{{ form.target.errors }}</p>
+      {% endif %}
+    </div>
+    <div class="mb-3 row inline">
+      <label for="{{form.keyword.name}}" class="col-sm-1 col-form-label">{{form.keyword.label}}:</label>
+        <input type="" class="form-control w-50" name="{{form.keyword.name}}" id="{{form.keyword.name}}">
+    </div>
+    <div class="mb-3 row inline">
+      <label for="date" class="col-sm-1 col-form-label">date:</label>
+        {{form.start_year}}{{form.start_month}}{{form.start_day}}
+         ~ 
+        {{form.end_year}}{{form.end_month}}{{form.end_day}}
+      </div>
+      <div class="mb-3 row g-1">
+        <div class="col-1 align-items-end">cpe:/</div>
+        <div class="col-auto">
+          <label for="{{form.cpe1.name}}" class="form-label">cat</label>
+          {{form.cpe1}}
+        </div>
+        <div class="col-2">
+          <label for="{{form.cpe2.name}}" class="form-label">vender</label>
+          <input type="" class="form-control" name="{{form.cpe2.name}}" id="{{form.cpe2.name}}">
+        </div>
+        <div class="col-2">
+          <label for="{{form.cpe3.name}}" class="form-label">product</label>
+          <input type="" class="form-control" name="{{form.cpe3.name}}" id="{{form.cpe3.name}}">
+        </div>
+        <div class="col-1">
+          <label for="{{form.cpe4.name}}" class="form-label">version</label>
+          <input type="" class="form-control" name="{{form.cpe4.name}}" id="{{form.cpe4.name}}">
+        </div>
+        <div class="col-1">
+          <label for="{{form.cpe5.name}}" class="form-label">update</label>
+          <input type="" class="form-control" name="{{form.cpe5.name}}" id="{{form.cpe5.name}}">
+        </div>
+        <div class="col-1">
+          <label for="{{form.cpe6.name}}" class="form-label">edition</label>
+          <input type="" class="form-control" name="{{form.cpe6.name}}" id="{{form.cpe6.name}}">
+        </div>
+        <div class="col-1">
+          <label for="{{form.cpe7.name}}" class="form-label">lang</label>
+          <input type="" class="form-control" name="{{form.cpe7.name}}" id="{{form.cpe7.name}}">
+        </div>
+      </div>
+      <button class="btn btn-secondary btn-lg" type="submit">Search</button>
+    {% for error in form.non_field_errors %}
+      <div class="m-4">{{ error }}</div>
+    {% endfor %}
+    {% csrf_token %}
+  </form>
+</div>
+{% endblock %}

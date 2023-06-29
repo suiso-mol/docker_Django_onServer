@@ -1,0 +1,44 @@
+{% load static %}
+{% load django_bootstrap5 %}
+
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{% static 'app_css/style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="shortcut icon" href="{% static 'pj_image/armx8-1ibhc-001.ico' %}" type="image/vnd.microsoft.icon">
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+<!--
+  <script src="{% static 'chat/js/chat.js' %}"></script>
+-->
+</head>
+<body>
+   <div class="container-fluid"> 
+      <h1 style="margin:20px">Chat : Prototype</h1>
+   </div>
+   <div class="container-fluid"> 
+      <form method="post" action="{% url 'chat:login' %}">
+         <div class="mb-3 row inline">
+            <label for="target_type" class="col-sm-2 col-form-label">User ID  :</label>
+            <input type="text"  class="form-control w-50" name="userid">
+         </div>
+         <div class="mb-3 row inline">
+            <label for="password" class="col-sm-2 col-form-label">Password  :</label>
+            <input type="password" class="form-control w-50" name="password">
+         </div>
+         <div class="inline">
+            <input type="submit" class="btn btn-secondary btn-lg" value="Login">
+            <a href="{% url 'chat:register' %}" class="btn btn-secondary btn-lg" tabindex="-1" role="button" aria-disabled="true">Register</a>
+         </div>
+         {% csrf_token %}
+      </form>
+   </div>
+<!---
+   <p class="message">アカウントをお持ちですか？：
+   <a href="#">アカウントを作成</a>
+   </p>
+-->
+</body>
+</html>

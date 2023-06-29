@@ -1,0 +1,45 @@
+{% extends 'result_base.html' %}
+
+{% block header %}
+<title>脆弱性情報(NVD):{{ key }}</title>
+{% endblock %}
+
+{% block content %}
+<table class="table table-hover table-borderless">
+  <thead class="sticky-top table-dark">
+    <tr>
+      <th class="w15">cve_id</th>
+      <th class="w50">description</th>
+      <th class="w10">score(cvss)</th>
+      <th class="w10">severity(cvss)</th>
+      <th class="w10">version(cvss)</th>
+      <th class="w5">ref.</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if entries|length > 0 %}
+    {% for entry in entries %}
+    <tr>
+      <td class="w15">{{ entry.cve_id }}</td>
+      <td class="w50">{{ entry.description }}</td>
+      <td>{{ entry.baseScore }}</td>
+      <td>{{ entry.baseSeverity }}</td>
+      <td>{{ entry.version }}</td>
+      <td>
+        <a href="{{ entry.references }}" target="_blank" role="button"><i class="bi bi-box-arrow-up-right"></i></a>
+      </td>
+    </tr>
+    {% endfor %}
+  {% else %}
+    <tr>
+      <td class="w15"></td>
+      <td class="w50">NVD : No vulnerabilities.</td>
+      <td class="w10"></td>
+      <td class="w10"></td>
+      <td class="w10"></td>
+      <td class="w5"></td>
+    </tr>
+  {% endif %}
+  </tbody>
+</table>
+{% endblock %}

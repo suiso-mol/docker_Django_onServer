@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <title>chat</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid"> 
+    <h1>Chat</h1>
+</div>
+<div class="container-fluid"> 
+    <form method="POST">
+        <div class="mb-3 row inline">
+            <label for="target_type" class="col-sm-1 col-form-label">select:</label>
+                {{form.target_type}}
+        </div>
+        <div class="mb-3 row inline">
+            <label for="{{form.sentence.name}}" class="col-sm-1 col-form-label">{{form.sentence.label}}:</label>
+            <input type="" class="form-control w-50" name="{{form.sentence.name}}" id="{{form.sentence.name}}">
+        </div>
+            <button class="btn btn-secondary btn-lg" type="submit">Chat</button>
+        {% if chat_input %}
+        <div class="alert alert-light mt-3" role="alert">
+            {{ chat_input }}
+        </div>
+        <div class="alert alert-primary mt-3" role="alert">
+            {{ chat_results }}
+        </div>
+        {% endif %}
+        {% if chat_input_latest %}
+        <div class="alert alert-light mt-3" role="alert">
+            {{ chat_input_latest }}
+        </div>
+        <div class="alert alert-primary mt-3" role="alert">
+            {{ chat_results_latest }}
+        </div>
+        {% endif %}
+        {% for error in form.non_field_errors %}
+        <div class="m-4">{{ error }}</div>
+        {% endfor %}
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

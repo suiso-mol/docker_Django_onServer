@@ -1,0 +1,53 @@
+h1{
+  margin: 0;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    background-color: #ffffff;
+}
+th {
+    background-color: #000080;
+}
+.table th,
+.table td {
+  border:none;
+}
+
+.w5 {
+  width: 5%;
+  word-break: break-all;
+  word-wrap: break-all;
+}
+
+.w10 {
+  width: 10%;
+  word-break: break-all;
+  word-wrap: break-all;
+}
+
+.w15 {
+  width: 15%;
+  word-break: break-all;
+  word-wrap: break-all;
+}
+
+.w50 {
+  width: 50%;
+  word-break: break-all;
+  word-wrap: break-all;
+}
+
+.w100 {
+  width: 100%;
+  word-break: break-all;
+  word-wrap: break-all;
+}
+
+.inline {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}

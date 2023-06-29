@@ -1,0 +1,8 @@
+*.log
+*.pyc
+__pycache__/
+dbdata/
+settings_local.py
+/src/static/
+.DS_Store
+

@@ -1,0 +1,57 @@
+{% extends 'db_base.html' %}
+
+{% block header %}
+  <title>Server-List</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid"> 
+  <table class="table table-hover">
+    <thead class="sticky-top table-dark">
+      <tr>
+        <th class="w10">サーバ名</th>
+        <th class="w10">IP</th>
+        <th class="w20">OS</th>
+        <th class="w20">用途</th>
+        <th class="w20">備考</th>
+        <th class="w10">作成</th>
+        <th class="w10">更新</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for server in server_list %}
+      <tr>
+      {% if server.deleted == False %}
+        <td class="w10"><a href="{% url 'vuln:content_list' server.sv_id %}">{{ server.name }}</a></td>
+        <td class="w10">{{ server.ip }}</td>
+        <td class="w10">{{ server.os }}</td>
+        <td class="w10">{{ server.usage }}</td>
+        <td class="w10">{{ server.remark }}</td>
+        <td class="w10">{{ server.create_date|date:"Y/m/d H:i" }}</td>
+        <td class="w10">{{ server.update_date|date:"Y/m/d H:i" }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+    {% for server in server_list %}
+      {% if server.deleted == True %}
+      <tr>
+        <td class="w10" style="text-decoration: line-through;"><a href="{% url 'vuln:content_list' server.sv_id %}">{{ server.name }}</a></td>
+        <td class="w10">{{ server.ip }}</td>
+        <td class="w10">{{ server.os }}</td>
+        <td class="w10">{{ server.usage }}</td>
+        <td class="w10">{{ server.remark }}</td>
+        <td class="w10">{{ server.create_date|date:"Y/m/d H:i" }}</td>
+        <td class="w10">{{ server.update_date|date:"Y/m/d H:i" }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}    </tbody>
+  </table>
+  <div class="container-fluid"> 
+    <ul class="fixed-bottom nav justify-content-end bg-black text-white">
+      <li class="nav-item">
+        <a class="navbar-brand">{{ server_list|length }} items found</a>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

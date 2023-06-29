@@ -1,0 +1,49 @@
+{% extends 'db_base.html' %}
+
+{% block header %}
+  {% for content in content_list %}
+    {% if forloop.counter <= 1 %}
+      <title>{{ content.sv_id.name }}:PackageList</title>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid"> 
+  <table class="table table-hover">
+    <thead class="sticky-top table-dark">
+      <tr>
+      {% if content_list.0.deleted == True %}
+        <th class="w25">パッケージ(※削除済みサーバ※)</th>
+      {% else %}
+        <th class="w25">パッケージ</th>
+      {% endif %}
+        <th class="w20">version</th>
+        <th class="w25">description</th>
+        <th class="w20">備考</th>
+        <th class="w5">JVN</th>
+        <th class="w5">NVD</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for content in content_list %}
+      <tr>
+        <td class="w25">{{ content.pkg_name_id }}</td>
+        <td class="w20">{{ content.version }}</td>
+        <td class="w25">{{ content.pkg_name.description }}</td>
+        <td class="w20">{{ content.pkg_name.remark }}</td>
+        <td class="w5"><a href="{% url 'vuln:myjvn_list' content.sv_pkg %}" target="_blank" role="button"><i class="bi bi-check2-square"></i></a></td>
+        <td class="w5"><a href="{% url 'vuln:nvd_list' content.sv_pkg %}" target="_blank" role="button"><i class="bi bi-check2-square"></i></a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div class="container-fluid"> 
+    <ul class="fixed-bottom nav justify-content-end bg-black text-white">
+      <li class="nav-item">
+        <a class="navbar-brand">{{ content_list|length }} items found</a>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
